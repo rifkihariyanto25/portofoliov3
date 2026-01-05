@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Admin Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'light-bg': '#f8fafc',
+                        'light-card': '#ffffff',
+                        'light-hover': '#f1f5f9',
+                        'accent': '#8b5cf6',
+                        'accent-light': '#a78bfa',
+                        'success': '#10b981',
+                        'danger': '#ef4444',
+                    },
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            min-height: 100vh;
+        }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(139, 92, 246, 0.15);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+        }
+        
+        .glass-card:hover {
+            border-color: rgba(139, 92, 246, 0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.04);
+        }
+        
+        .gradient-border {
+            position: relative;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+        
+        .gradient-border::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 1rem;
+            padding: 1px;
+            background: linear-gradient(135deg, #8b5cf6, #3b82f6, #06b6d4);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.4);
+        }
+        
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #8b5cf6;
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.15);
+        }
+        
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: rgba(241, 245, 249, 0.8);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: rgba(139, 92, 246, 0.3);
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(139, 92, 246, 0.5);
+        }
+    </style>
+</head>
+<body class="text-slate-900">
+    <nav class="glass-card sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-accent to-accent-light flex items-center justify-center">
+                        <i class="fas fa-briefcase text-white text-lg"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold text-slate-900">Portfolio Dashboard</h1>
+                        <p class="text-xs text-slate-600">Manage your projects</p>
+                    </div>
+                </div>
+                <a href="index.html" class="flex items-center gap-2 px-4 py-2 rounded-lg bg-light-hover hover:bg-slate-200 transition text-sm text-slate-700">
+                    <i class="fas fa-home"></i>
+                    <span>Back to Site</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mx-auto px-6 py-8 max-w-7xl">
+        <div class="flex justify-center mb-8">
+            <div class="glass-card rounded-2xl p-8 w-full max-w-md">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-accent to-accent-light flex items-center justify-center">
+                        <i class="fas fa-layer-group text-white text-2xl"></i>
+                    </div>
+                </div>
+                <h3 class="text-4xl font-bold mb-2 text-slate-900" id="totalProjects">0</h3>
+                <p class="text-base text-slate-600">Total Projects</p>
+            </div>
+        </div>
+
+        <div id="notification" class="hidden mb-6 p-4 rounded-xl glass-card"></div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div class="lg:col-span-1">
+                <div class="gradient-border rounded-2xl p-6 sticky top-24">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-accent to-accent-light flex items-center justify-center">
+                            <i class="fas fa-plus text-white"></i>
+                        </div>
+                        <h2 class="text-xl font-bold text-slate-900">Add New Project</h2>
+                    </div>
+                    
+                    <form id="portfolioForm" class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium mb-2 text-slate-700">Project Title</label>
+                            <input type="text" id="title" required
+                                class="w-full px-4 py-2.5 bg-white rounded-lg border border-slate-300 text-slate-900 text-sm transition-all duration-200">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium mb-2 text-slate-700">Category <span class="text-slate-500 text-xs">(select multiple)</span></label>
+                            <div class="w-full px-4 py-3 bg-white rounded-lg border border-slate-300 max-h-44 overflow-y-auto">
+                                <div class="space-y-2">
+                                    <label class="flex items-center gap-2 cursor-pointer hover:bg-accent/10 p-2 rounded transition">
+                                        <input type="checkbox" name="categories" value="backend" class="w-4 h-4 accent-accent">
+                                        <i class="fas fa-server text-accent text-sm"></i>
+                                        <span class="text-sm text-slate-700">Backend Development</span>
+                                    </label>
+                                    <label class="flex items-center gap-2 cursor-pointer hover:bg-accent/10 p-2 rounded transition">
+                                        <input type="checkbox" name="categories" value="frontend" class="w-4 h-4 accent-accent">
+                                        <i class="fas fa-code text-accent text-sm"></i>
+                                        <span class="text-sm text-slate-700">Frontend Development</span>
+                                    </label>
+                                    <label class="flex items-center gap-2 cursor-pointer hover:bg-accent/10 p-2 rounded transition">
+                                        <input type="checkbox" name="categories" value="fullstack" class="w-4 h-4 accent-accent">
+                                        <i class="fas fa-layer-group text-accent text-sm"></i>
+                                        <span class="text-sm text-slate-700">Full Stack Development</span>
+                                    </label>
+                                    <label class="flex items-center gap-2 cursor-pointer hover:bg-accent/10 p-2 rounded transition">
+                                        <input type="checkbox" name="categories" value="mobile" class="w-4 h-4 accent-accent">
+                                        <i class="fas fa-mobile-alt text-accent text-sm"></i>
+                                        <span class="text-sm text-slate-700">Mobile Development</span>
+                                    </label>
+                                    <label class="flex items-center gap-2 cursor-pointer hover:bg-accent/10 p-2 rounded transition">
+                                        <input type="checkbox" name="categories" value="devops" class="w-4 h-4 accent-accent">
+                                        <i class="fas fa-cogs text-accent text-sm"></i>
+                                        <span class="text-sm text-slate-700">DevOps & Cloud</span>
+                                    </label>
+                                    <label class="flex items-center gap-2 cursor-pointer hover:bg-accent/10 p-2 rounded transition">
+                                        <input type="checkbox" name="categories" value="ml" class="w-4 h-4 accent-accent">
+                                        <i class="fas fa-robot text-accent text-sm"></i>
+                                        <span class="text-sm text-slate-700">Machine Learning / AI</span>
+                                    </label>
+                                    <label class="flex items-center gap-2 cursor-pointer hover:bg-accent/10 p-2 rounded transition">
+                                        <input type="checkbox" name="categories" value="iot" class="w-4 h-4 accent-accent">
+                                        <i class="fas fa-microchip text-accent text-sm"></i>
+                                        <span class="text-sm text-slate-700">IoT & Embedded Systems</span>
+                                    </label>
+                                    <label class="flex items-center gap-2 cursor-pointer hover:bg-accent/10 p-2 rounded transition">
+                                        <input type="checkbox" name="categories" value="uiux" class="w-4 h-4 accent-accent">
+                                        <i class="fas fa-paint-brush text-accent text-sm"></i>
+                                        <span class="text-sm text-slate-700">UI/UX Design</span>
+                                    </label>
+                                    <label class="flex items-center gap-2 cursor-pointer hover:bg-accent/10 p-2 rounded transition">
+                                        <input type="checkbox" name="categories" value="pm" class="w-4 h-4 accent-accent">
+                                        <i class="fas fa-tasks text-accent text-sm"></i>
+                                        <span class="text-sm text-slate-700">Project Management</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium mb-2 text-slate-700">Description</label>
+                            <textarea id="description" required rows="3"
+                                class="w-full px-4 py-2.5 bg-white rounded-lg border border-slate-300 text-slate-900 text-sm transition-all duration-200 resize-none"></textarea>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium mb-2 text-slate-700">Date</label>
+                            <input type="date" id="date" required
+                                class="w-full px-4 py-2.5 bg-white rounded-lg border border-slate-300 text-slate-900 text-sm transition-all duration-200 cursor-pointer"
+                                style="color-scheme: light;">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium mb-2 text-slate-700">Tech Stack Icon</label>
+                            <select id="techstack" required
+                                class="w-full px-4 py-2.5 bg-white rounded-lg border border-slate-300 text-slate-900 text-sm transition-all duration-200">
+                                <option value="">-- Select Icon --</option>
+                                <option value="fa-code">💻 Code</option>
+                                <option value="fa-laptop-code">💼 Development</option>
+                                <option value="fa-mobile-alt">📱 Mobile</option>
+                                <option value="fa-database">🗄️ Database</option>
+                                <option value="fa-server">🖥️ Server</option>
+                                <option value="fa-globe">🌐 Web</option>
+                                <option value="fa-cloud">☁️ Cloud</option>
+                                <option value="fa-cogs">⚙️ DevOps</option>
+                                <option value="fa-robot">🤖 AI/ML</option>
+                                <option value="fa-microchip">💾 IoT</option>
+                                <option value="fa-shield-alt">🔒 Security</option>
+                                <option value="fa-network-wired">🔗 Network</option>
+                                <option value="fa-terminal">⌨️ Terminal</option>
+                                <option value="fa-chart-line">📊 Analytics</option>
+                                <option value="fa-sitemap">🏗️ Architecture</option>
+                                <option value="fa-plug">🔌 API</option>
+                                <option value="fa-file-code">📄 Source Code</option>
+                                <option value="fa-bug">🐛 Testing</option>
+                                <option value="fa-rocket">🚀 Deployment</option>
+                                <option value="fa-paint-brush">🎨 Design</option>
+                            </select>
+                        </div>
+
+                        <input type="hidden" id="editId" value="">
+                        <button type="submit" id="submitBtn"
+                            class="w-full py-3 btn-primary rounded-xl font-semibold text-white">
+                            <i class="fas fa-plus mr-2"></i> <span id="submitBtnText">Add Project</span>
+                        </button>
+                        <button type="button" id="cancelBtn" style="display:none;"
+                            class="w-full py-3 bg-danger/20 border border-danger text-danger rounded-xl font-semibold hover:bg-danger/30 transition">
+                            <i class="fas fa-times mr-2"></i> Cancel
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="lg:col-span-2">
+                <div class="glass-card rounded-2xl p-6">
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-success to-emerald-400 flex items-center justify-center">
+                                <i class="fas fa-list text-white"></i>
+                            </div>
+                            <h2 class="text-xl font-bold text-slate-900">Projects List</h2>
+                        </div>
+                    </div>
+                    
+                    <div id="portfolioList" class="space-y-3">
+                        <div class="text-center text-slate-600 py-12">
+                            <i class="fas fa-spinner fa-spin text-4xl mb-3"></i>
+                            <p class="text-sm">Loading projects...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+    <script src="./assets/js/supabase-config.js"></script>
+    
+    <script>
+        class PortfolioAdmin {
+            constructor() {
+                if (!window.supabaseClient) {
+                    console.error('Supabase client not initialized');
+                    this.showNotification('Database connection failed. Please refresh the page.', 'error');
+                    return;
+                }
+                
+                this.supabase = window.supabaseClient;
+                this.form = document.getElementById('portfolioForm');
+                this.portfolioList = document.getElementById('portfolioList');
+                this.notification = document.getElementById('notification');
+                
+                this.form.addEventListener('submit', (e) => this.handleSubmit(e));
+                this.loadPortfolios();
+                this.updateStats();
+            }
+
+            showNotification(message, type = 'success') {
+                this.notification.className = `mb-6 p-4 rounded-xl glass-card border-l-4 ${type === 'success' ? 'border-success text-success' : 'border-danger text-danger'}`;
+                this.notification.innerHTML = `
+                    <div class="flex items-center gap-3">
+                        <i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'} text-xl"></i>
+                        <span class="text-sm">${message}</span>
+                    </div>
+                `;
+                this.notification.classList.remove('hidden');
+                
+                setTimeout(() => {
+                    this.notification.classList.add('hidden');
+                }, 5000);
+            }
+
+            async updateStats() {
+                try {
+                    const { data, error } = await this.supabase
+                        .from('portfolios')
+                        .select('category');
+
+                    if (error) throw error;
+
+                    const total = data.length;
+                    let backend = 0;
+                    let frontend = 0;
+                    
+                    data.forEach(p => {
+                        const categories = p.category.split(',');
+                        if (categories.some(cat => cat.trim() === 'backend')) backend++;
+                        if (categories.some(cat => cat.trim() === 'frontend')) frontend++;
+                    });
+
+                    document.getElementById('totalProjects').textContent = total;
+                    document.getElementById('backendProjects').textContent = backend;
+                    document.getElementById('frontendProjects').textContent = frontend;
+                } catch (error) {
+                    console.error('Error updating stats:', error);
+                }
+            }
+
+            async handleSubmit(e) {
+                e.preventDefault();
+                
+                const submitBtn = document.getElementById('submitBtn');
+                const submitBtnText = document.getElementById('submitBtnText');
+                const editId = document.getElementById('editId').value;
+                
+                submitBtn.disabled = true;
+                const originalText = submitBtnText.textContent;
+                submitBtnText.textContent = 'Saving...';
+
+                const selectedCategories = Array.from(document.querySelectorAll('input[name="categories"]:checked'))
+                    .map(cb => cb.value);
+                
+                if (selectedCategories.length === 0) {
+                    this.showNotification('Select at least 1 category!', 'error');
+                    submitBtn.disabled = false;
+                    submitBtnText.textContent = originalText;
+                    return;
+                }
+
+                const techStackIcon = document.getElementById('techstack').value;
+                
+                if (!techStackIcon) {
+                    this.showNotification('Select a tech stack icon!', 'error');
+                    submitBtn.disabled = false;
+                    submitBtnText.textContent = originalText;
+                    return;
+                }
+
+                const portfolio = {
+                    title: document.getElementById('title').value,
+                    category: selectedCategories.join(','),
+                    description: document.getElementById('description').value,
+                    date: document.getElementById('date').value,
+                    icon: techStackIcon
+                };
+
+                try {
+                    if (!this.supabase) {
+                        throw new Error('Database connection not available');
+                    }
+                    
+                    let result;
+                    
+                    if (editId) {
+                        result = await this.supabase
+                            .from('portfolios')
+                            .update(portfolio)
+                            .eq('id', editId)
+                            .select();
+                        
+                        if (result.error) throw result.error;
+                        this.showNotification('Project updated successfully!', 'success');
+                    } else {
+                        portfolio.created_at = new Date().toISOString();
+                        result = await this.supabase
+                            .from('portfolios')
+                            .insert([portfolio])
+                            .select();
+                        
+                        if (result.error) throw result.error;
+                        this.showNotification('Project added successfully!', 'success');
+                    }
+
+                    this.resetForm();
+                    this.loadPortfolios();
+                    this.updateStats();
+                } catch (error) {
+                    console.error('Error:', error);
+                    this.showNotification('Failed to save: ' + error.message, 'error');
+                } finally {
+                    submitBtn.disabled = false;
+                    const submitBtnText = document.getElementById('submitBtnText');
+                    const editId = document.getElementById('editId').value;
+                    if (submitBtnText) {
+                        submitBtnText.textContent = editId ? 'Update Project' : 'Add Project';
+                    }
+                }
+            }
+            
+            resetForm() {
+                this.form.reset();
+                document.getElementById('editId').value = '';
+                document.getElementById('submitBtnText').textContent = 'Add Project';
+                document.getElementById('cancelBtn').style.display = 'none';
+                document.querySelectorAll('input[name="categories"]').forEach(cb => cb.checked = false);
+                document.getElementById('techstack').value = '';
+            }
+            
+            editPortfolio(item) {
+                document.getElementById('editId').value = item.id;
+                document.getElementById('title').value = item.title;
+                document.getElementById('description').value = item.description;
+                document.getElementById('date').value = item.date;
+                
+                const categories = item.category.split(',');
+                document.querySelectorAll('input[name="categories"]').forEach(cb => {
+                    cb.checked = categories.includes(cb.value);
+                });
+                
+                document.getElementById('techstack').value = item.icon;
+                
+                document.getElementById('submitBtnText').textContent = 'Update Project';
+                document.getElementById('cancelBtn').style.display = 'block';
+                
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            async loadPortfolios() {
+                try {
+                    const { data, error } = await this.supabase
+                        .from('portfolios')
+                        .select('*')
+                        .order('date', { ascending: false });
+
+                    if (error) throw error;
+
+                    if (data.length === 0) {
+                        this.portfolioList.innerHTML = '<p class="text-center text-slate-600 py-12 text-sm">No projects yet. Add your first one!</p>';
+                        return;
+                    }
+
+                    this.portfolioList.innerHTML = data.map(item => {
+                        const categories = item.category.split(',');
+                        const categoryColors = {
+                            'backend': 'from-green-500/20 to-emerald-500/20 border-green-500/30 text-green-700',
+                            'frontend': 'from-blue-500/20 to-cyan-500/20 border-blue-500/30 text-blue-700',
+                            'fullstack': 'from-purple-500/20 to-violet-500/20 border-purple-500/30 text-purple-700',
+                            'mobile': 'from-orange-500/20 to-amber-500/20 border-orange-500/30 text-orange-700',
+                            'devops': 'from-teal-500/20 to-cyan-500/20 border-teal-500/30 text-teal-700',
+                            'ml': 'from-pink-500/20 to-rose-500/20 border-pink-500/30 text-pink-700',
+                            'iot': 'from-indigo-500/20 to-blue-500/20 border-indigo-500/30 text-indigo-700',
+                            'uiux': 'from-fuchsia-500/20 to-pink-500/20 border-fuchsia-500/30 text-fuchsia-700',
+                            'pm': 'from-amber-500/20 to-yellow-500/20 border-amber-500/30 text-amber-700'
+                        };
+                        
+                        const categoryLabels = {
+                            'backend': 'Backend',
+                            'frontend': 'Frontend',
+                            'fullstack': 'Full Stack',
+                            'mobile': 'Mobile',
+                            'devops': 'DevOps',
+                            'ml': 'ML/AI',
+                            'iot': 'IoT',
+                            'uiux': 'UI/UX',
+                            'pm': 'Project Manager'
+                        };
+                        
+                        return `
+                        <div class="bg-white rounded-xl p-5 border border-slate-200 hover:border-accent transition-all duration-300 shadow-sm">
+                            <div class="flex justify-between items-start mb-3">
+                                <div class="flex-1">
+                                    <div class="flex items-center gap-2 mb-2 flex-wrap">
+                                        <h3 class="font-semibold text-slate-900 text-lg">${item.title}</h3>
+                                        ${categories.map(cat => `
+                                            <span class="px-2 py-1 text-xs rounded-lg bg-gradient-to-r ${categoryColors[cat.trim()] || 'from-slate-500/20 to-gray-500/20 border-slate-500/30 text-slate-700'} border font-medium">
+                                                ${categoryLabels[cat.trim()] || cat.trim()}
+                                            </span>
+                                        `).join('')}
+                                    </div>
+                                    <p class="text-slate-600 text-xs mb-3">${this.formatDate(item.date)}</p>
+                                    <p class="text-slate-700 text-sm mb-3 leading-relaxed">${item.description}</p>
+                                    
+                                    <div class="flex gap-2 mb-3 flex-wrap">
+                                        <div class="w-10 h-10 rounded-lg bg-accent/20 flex items-center justify-center group hover:bg-accent/30 transition">
+                                            <i class="fas ${item.icon} text-accent text-lg"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex gap-2 ml-4">
+                                    <button onclick='portfolioAdmin.editPortfolio(${JSON.stringify(item).replace(/'/g, "&apos;")})' 
+                                        class="w-9 h-9 rounded-lg bg-blue-500/20 text-blue-400 hover:bg-blue-500/30 transition flex items-center justify-center">
+                                        <i class="fas fa-edit text-sm"></i>
+                                    </button>
+                                    <button onclick="portfolioAdmin.deletePortfolio(${item.id})" 
+                                        class="w-9 h-9 rounded-lg bg-danger/20 text-danger hover:bg-danger/30 transition flex items-center justify-center">
+                                        <i class="fas fa-trash text-sm"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    }).join('');
+                } catch (error) {
+                    console.error('Error:', error);
+                    this.portfolioList.innerHTML = '<p class="text-center text-danger py-12 text-sm">Failed to load: ' + error.message + '</p>';
+                }
+            }
+
+            async deletePortfolio(id) {
+                if (!confirm('Delete this project?')) return;
+
+                try {
+                    const { error } = await this.supabase
+                        .from('portfolios')
+                        .delete()
+                        .eq('id', id);
+
+                    if (error) throw error;
+
+                    this.showNotification('Project deleted successfully!', 'success');
+                    this.loadPortfolios();
+                    this.updateStats();
+                } catch (error) {
+                    console.error('Error:', error);
+                    this.showNotification('Failed to delete: ' + error.message, 'error');
+                }
+            }
+
+            formatDate(dateString) {
+                const options = { year: 'numeric', month: 'long' };
+                const date = new Date(dateString);
+                return date.toLocaleDateString('en-US', options);
+            }
+        }
+
+        let portfolioAdmin;
+        document.addEventListener('DOMContentLoaded', () => {
+            // Wait for Supabase to load
+            setTimeout(() => {
+                if (typeof window.supabase === 'undefined') {
+                    document.getElementById('portfolioList').innerHTML = '<p class="text-center text-danger py-12 text-sm">❌ Supabase library failed to load. Check your internet connection.</p>';
+                    return;
+                }
+                
+                if (typeof window.supabaseClient === 'undefined') {
+                    document.getElementById('portfolioList').innerHTML = '<p class="text-center text-danger py-12 text-sm">❌ Supabase client not initialized. Check supabase-config.js file.</p>';
+                    return;
+                }
+                
+                portfolioAdmin = new PortfolioAdmin();
+                
+                document.getElementById('cancelBtn').addEventListener('click', () => {
+                    portfolioAdmin.resetForm();
+                });
+            }, 100);
+        });
+    </script>
+</body>
+</html>

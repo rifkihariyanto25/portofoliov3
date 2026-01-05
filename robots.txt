@@ -1,0 +1,13 @@
+# robots.txt for Rifki Aditya Hariyanto Portfolio
+# https://www.robotstxt.org/robotstxt.html
+
+User-agent: *
+Allow: /
+Disallow: /admin.html
+Disallow: /admin
+
+# Sitemap location (ganti dengan domain kamu setelah deploy)
+Sitemap: https://GANTI-DOMAIN-KAMU.netlify.app/sitemap.xml
+
+# Crawl-delay (opsional)
+Crawl-delay: 1

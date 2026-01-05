@@ -1,0 +1,8 @@
+# Netlify Redirects File
+# https://docs.netlify.com/routing/redirects/
+
+# Redirect /admin ke /admin.html
+/admin    /admin.html    200
+
+# Handle SPA routing (jika diperlukan)
+/*    /index.html   200
