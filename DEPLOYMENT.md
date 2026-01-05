@@ -13,6 +13,7 @@
 5. ✅ **DONE!** Dapat domain: `random-name-123.netlify.app`
 
 **Setelah Deploy:**
+
 - Custom domain name: Site settings → Domain management → Options → Edit site name
 - Contoh: `rifki-portfolio.netlify.app`
 
@@ -45,30 +46,39 @@ Setelah dapat domain production, **WAJIB** update file-file ini:
 Cari & Replace semua `http://127.0.0.1:5501` dengan domain baru kamu.
 
 **Lokasi yang perlu diganti (Lines 18-43):**
+
 ```html
 <!-- Line 18 -->
-<link rel="canonical" href="https://rifki-portfolio.netlify.app/">
+<link rel="canonical" href="https://rifki-portfolio.netlify.app/" />
 
 <!-- Line 22 -->
-<meta property="og:url" content="https://rifki-portfolio.netlify.app/">
+<meta property="og:url" content="https://rifki-portfolio.netlify.app/" />
 
 <!-- Line 25 -->
-<meta property="og:image" content="https://rifki-portfolio.netlify.app/Rifki%20Aditya%20Hariyanto_Foto.jpg">
+<meta
+  property="og:image"
+  content="https://rifki-portfolio.netlify.app/Rifki%20Aditya%20Hariyanto_Foto.jpg"
+/>
 
 <!-- Line 31 -->
-<meta name="twitter:url" content="https://rifki-portfolio.netlify.app/">
+<meta name="twitter:url" content="https://rifki-portfolio.netlify.app/" />
 
 <!-- Line 33 -->
-<meta name="twitter:image" content="https://rifki-portfolio.netlify.app/Rifki%20Aditya%20Hariyanto_Foto.jpg">
+<meta
+  name="twitter:image"
+  content="https://rifki-portfolio.netlify.app/Rifki%20Aditya%20Hariyanto_Foto.jpg"
+/>
 
 <!-- Line 42 (JSON-LD) -->
 "url": "https://rifki-portfolio.netlify.app/",
 
 <!-- Line 43 (JSON-LD) -->
-"image": "https://rifki-portfolio.netlify.app/Rifki%20Aditya%20Hariyanto_Foto.jpg",
+"image":
+"https://rifki-portfolio.netlify.app/Rifki%20Aditya%20Hariyanto_Foto.jpg",
 ```
 
 **Cara cepat di VS Code:**
+
 1. Tekan `Ctrl + H` (Windows) atau `Cmd + H` (Mac)
 2. Find: `http://127.0.0.1:5501`
 3. Replace: `https://rifki-portfolio.netlify.app` (ganti dengan domain kamu)
@@ -85,6 +95,7 @@ Sitemap: https://rifki-portfolio.netlify.app/sitemap.xml
 Ganti semua `GANTI-DOMAIN-KAMU` dengan domain production kamu.
 
 **Cara cepat di VS Code:**
+
 1. Tekan `Ctrl + H`
 2. Find: `GANTI-DOMAIN-KAMU.netlify.app`
 3. Replace: `rifki-portfolio.netlify.app` (atau domain kamu)
@@ -109,22 +120,23 @@ Punya domain sendiri? (misal: rifkiaditya.com)
 ### Setup di Netlify:
 
 1. **Di Netlify Dashboard:**
+
    - Site settings → Domain management
    - Klik "Add custom domain"
    - Masukkan domain: `rifkiaditya.com`
    - Klik "Verify"
 
 2. **Di Domain Provider** (Niagahoster, Namecheap, dll):
-   
+
    Tambahkan DNS Records:
-   
+
    ```
    Type: A
    Name: @
    Value: 75.2.60.5
    TTL: Automatic
-   
-   Type: CNAME  
+
+   Type: CNAME
    Name: www
    Value: rifki-portfolio.netlify.app
    TTL: Automatic
@@ -137,17 +149,18 @@ Punya domain sendiri? (misal: rifkiaditya.com)
 ### Setup di Vercel:
 
 1. **Di Vercel Dashboard:**
+
    - Project settings → Domains
    - Klik "Add"
    - Masukkan domain: `rifkiaditya.com`
 
 2. **Di Domain Provider:**
-   
+
    ```
    Type: A
    Name: @
    Value: 76.76.21.21
-   
+
    Type: CNAME
    Name: www
    Value: cname.vercel-dns.com
@@ -182,12 +195,17 @@ Punya domain sendiri? (misal: rifkiaditya.com)
 
 ```html
 <!-- Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script
+  async
+  src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"
+></script>
 <script>
   window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-XXXXXXXXXX');
+  function gtag() {
+    dataLayer.push(arguments);
+  }
+  gtag("js", new Date());
+  gtag("config", "G-XXXXXXXXXX");
 </script>
 ```
 
@@ -198,6 +216,7 @@ Punya domain sendiri? (misal: rifkiaditya.com)
 Sebelum deploy, compress foto untuk loading lebih cepat:
 
 1. **Online Tool:**
+
    - TinyPNG: https://tinypng.com
    - Compressor.io: https://compressor.io
 
@@ -215,6 +234,7 @@ Sebelum deploy, compress foto untuk loading lebih cepat:
 ### Problem: "Redirect loop" atau 404
 
 **Solution:**
+
 - Check file `_redirects` ada di root folder
 - Content harus persis:
   ```
@@ -225,6 +245,7 @@ Sebelum deploy, compress foto untuk loading lebih cepat:
 ### Problem: Meta tags tidak muncul saat share di social media
 
 **Solution:**
+
 - Clear cache social media:
   - **Facebook:** https://developers.facebook.com/tools/debug/
   - **LinkedIn:** https://www.linkedin.com/post-inspector/
@@ -234,6 +255,7 @@ Sebelum deploy, compress foto untuk loading lebih cepat:
 ### Problem: SEO tidak jalan
 
 **Solution:**
+
 1. ✅ Pastikan sudah update URLs di index.html
 2. ✅ Submit sitemap ke Google Search Console
 3. ✅ Tunggu 2-7 hari untuk indexing
@@ -244,20 +266,22 @@ Sebelum deploy, compress foto untuk loading lebih cepat:
 ## 📈 Performance Tips
 
 ### Netlify (sudah optimal via netlify.toml):
+
 - ✅ Global CDN
 - ✅ Auto caching
 - ✅ Gzip compression
 - ✅ Security headers
 
 ### Additional Optimization:
+
 1. Enable **Netlify Analytics** (Site settings → Analytics)
 2. Add **Preload** untuk critical resources:
    ```html
-   <link rel="preload" href="Rifki Aditya Hariyanto_Foto.jpg" as="image">
+   <link rel="preload" href="Rifki Aditya Hariyanto_Foto.jpg" as="image" />
    ```
 3. Lazy load images:
    ```html
-   <img src="..." loading="lazy">
+   <img src="..." loading="lazy" />
    ```
 
 ---
@@ -283,14 +307,17 @@ Setelah deploy, check:
 ## 🚀 Deploy Updates (Setelah Edit Code)
 
 **Netlify/Vercel dengan Git:**
+
 ```bash
 git add .
 git commit -m "Update portfolio content"
 git push
 ```
+
 Auto deploy dalam 1-2 menit! ⚡
 
 **Manual Upload (Drag & Drop):**
+
 - Upload ulang folder ke Netlify Drop
 - Will replace previous deployment
 
@@ -299,10 +326,12 @@ Auto deploy dalam 1-2 menit! ⚡
 ## 📞 Need Help?
 
 **Contact:**
+
 - Email: hariyantorifki25@gmail.com
 - LinkedIn: linkedin.com/in/rifki-aditya-hariyanto-2662821a7
 
 **Resources:**
+
 - Netlify Docs: https://docs.netlify.com
 - Vercel Docs: https://vercel.com/docs
 - Google Search Console: https://support.google.com/webmasters

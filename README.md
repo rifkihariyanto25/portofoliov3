@@ -15,12 +15,14 @@ Portfolio website modern dengan animasi scroll yang smooth dan SEO-optimized. Di
 ## 🎨 Animasi yang Tersedia
 
 1. **Scroll Animations**
+
    - Fade Up, Left, Right
    - Zoom In
    - Rotate
    - Stagger Effects
 
 2. **Parallax Effects**
+
    - Background blobs
    - Hero section
 
@@ -59,6 +61,7 @@ portofoliov3/
 ### Metode 2: Git Deploy (Recommended)
 
 1. **Push ke GitHub**
+
    ```bash
    git init
    git add .
@@ -69,6 +72,7 @@ portofoliov3/
    ```
 
 2. **Connect ke Netlify**
+
    - Login ke [Netlify](https://app.netlify.com)
    - Klik "Add new site" → "Import an existing project"
    - Pilih GitHub dan authorize
@@ -102,20 +106,26 @@ netlify deploy --prod
 Setelah mendapat domain dari Netlify, ganti URL di file-file berikut:
 
 ### 1. index.html (Line 18-43)
+
 ```html
 <!-- Ganti semua http://127.0.0.1:5501 dengan domain baru -->
-<link rel="canonical" href="https://DOMAIN-KAMU.netlify.app/">
-<meta property="og:url" content="https://DOMAIN-KAMU.netlify.app/">
-<meta property="og:image" content="https://DOMAIN-KAMU.netlify.app/Rifki%20Aditya%20Hariyanto_Foto.jpg">
+<link rel="canonical" href="https://DOMAIN-KAMU.netlify.app/" />
+<meta property="og:url" content="https://DOMAIN-KAMU.netlify.app/" />
+<meta
+  property="og:image"
+  content="https://DOMAIN-KAMU.netlify.app/Rifki%20Aditya%20Hariyanto_Foto.jpg"
+/>
 <!-- dst... -->
 ```
 
 ### 2. robots.txt
+
 ```
 Sitemap: https://DOMAIN-KAMU.netlify.app/sitemap.xml
 ```
 
 ### 3. sitemap.xml
+
 ```xml
 <!-- Ganti semua GANTI-DOMAIN-KAMU dengan domain baru -->
 <loc>https://DOMAIN-KAMU.netlify.app/</loc>
@@ -145,12 +155,14 @@ Sitemap: https://DOMAIN-KAMU.netlify.app/sitemap.xml
 ## 📈 Submit ke Search Engines
 
 ### Google Search Console
+
 1. Buka [Google Search Console](https://search.google.com/search-console)
 2. Tambahkan property dengan domain kamu
 3. Verify ownership (via HTML tag atau DNS)
 4. Submit sitemap: `https://DOMAIN-KAMU.netlify.app/sitemap.xml`
 
 ### Bing Webmaster Tools
+
 1. Buka [Bing Webmaster](https://www.bing.com/webmasters)
 2. Add site
 3. Submit sitemap
@@ -184,16 +196,19 @@ Sitemap: https://DOMAIN-KAMU.netlify.app/sitemap.xml
 Jika punya domain sendiri (misal: rifkiaditya.com):
 
 1. **Di Netlify**:
+
    - Domain settings → Add custom domain
    - Tambahkan domain kamu
 
 2. **Di Domain Provider** (Niagahoster, Namecheap, dll):
+
    - Tambah DNS Record:
+
      ```
      Type: A
      Name: @
      Value: 75.2.60.5 (Netlify IP)
-     
+
      Type: CNAME
      Name: www
      Value: your-site.netlify.app
@@ -204,17 +219,21 @@ Jika punya domain sendiri (misal: rifkiaditya.com):
 ## 🎨 Customization
 
 ### Warna
+
 Edit di Tailwind config atau CSS variables untuk ganti color scheme.
 
 ### Animasi
+
 Semua animasi ada di CSS section "SCROLL ANIMATIONS" (line ~287-370 di index.html)
 
 ### Content
+
 Portfolio projects diambil dari Supabase. Update via admin dashboard di `/admin.html`
 
 ## 📞 Support
 
 Jika ada masalah atau pertanyaan:
+
 - Email: hariyantorifki25@gmail.com
 - LinkedIn: [Rifki Aditya Hariyanto](https://www.linkedin.com/in/rifki-aditya-hariyanto-2662821a7/)
 
