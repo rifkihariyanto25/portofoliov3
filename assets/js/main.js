@@ -7,7 +7,7 @@ AOS.init({
 
 // Initialize Typed.js for typing animation
 new Typed(".typing", {
-  strings: ["Backend Developer", "UI/UX Designer", "Tech Enthusiast"],
+  strings: ["Tech Enthusiast", "Backend Developer", "Project Management"],
   typeSpeed: 80,
   backSpeed: 50,
   loop: true,
