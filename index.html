@@ -29,7 +29,7 @@
     <meta name="theme-color" content="#a855f7" />
 
     <!-- Favicon -->
-    <link rel="icon" href="/assets/logo.png" type="image/png" />
+    <link rel="icon" href="/assets/logo.webp" type="image/webp" />
 
     <!-- Canonical URL -->
     <link rel="canonical" href="https://portofoliorifki.netlify.app/" />
@@ -39,6 +39,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preconnect" href="https://unpkg.com" />
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+
+    <!-- Preload LCP hero image -->
+    <link rel="preload" as="image" href="/assets/foto2.webp" type="image/webp" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
@@ -140,13 +143,14 @@
 
     <!-- Tailwind CSS (built) -->
     <link rel="stylesheet" href="./assets/css/tailwind-output.css" />
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-    />
     <link rel="stylesheet" href="./assets/css/slider.css" />
     <link rel="stylesheet" href="./assets/css/main.css" />
+
+    <!-- Non-critical CSS (deferred) -->
+    <link rel="preload" href="https://unpkg.com/aos@2.3.1/dist/aos.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" /></noscript>
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" /></noscript>
   </head>
   <body class="bg-light-bg text-slate-900 overflow-x-hidden">
     <!-- Animated Background Blobs -->
@@ -167,10 +171,16 @@
           href="#home"
           class="logo-container flex items-center cursor-pointer group"
         >
-          <img
-            src="./assets/logo.png"
-            alt="Rifki Aditya Hariyanto Logo"
-            class="h-16 sm:h-14 w-auto transition-all duration-300 group-hover:scale-110"
+          <picture>
+              <source srcset="/assets/logo.webp" type="image/webp" />
+              <img
+                src="./assets/logo.png"
+                alt="Rifki Aditya Hariyanto Logo"
+                class="h-16 sm:h-14 w-auto transition-all duration-300 group-hover:scale-110"
+                width="64"
+                height="64"
+              />
+            </picture>
           />
         </a>
 
@@ -360,11 +370,17 @@
               <div
                 class="relative w-full h-full rounded-full overflow-hidden border-4 border-slate-200 shadow-2xl"
               >
-                <img
-                  src="/assets/foto2.png"
-                  alt="Rifki Aditya Hariyanto - Backend Developer and UI/UX Designer"
-                  class="w-full h-full object-cover"
-                />
+                <picture>
+                  <source srcset="/assets/foto2.webp" type="image/webp" />
+                  <img
+                    src="/assets/foto2.png"
+                    alt="Rifki Aditya Hariyanto - Backend Developer and UI/UX Designer"
+                    class="w-full h-full object-cover"
+                    width="768"
+                    height="1344"
+                    fetchpriority="high"
+                  />
+                </picture>
               </div>
               <div
                 class="absolute -bottom-4 -right-4 w-24 h-24 bg-gradient-to-br from-accent-purple to-accent-blue rounded-2xl flex items-center justify-center text-white font-bold text-xl shadow-xl rotate-12 transform hover:rotate-0 transition duration-300"
@@ -1059,7 +1075,10 @@
           <!-- Logo & Info -->
           <div class="text-center md:text-left">
             <div class="mb-2 flex justify-center md:justify-start">
-              <img src="/assets/logo.png" alt="RAH Logo" class="h-20 w-auto" />
+              <picture>
+                <source srcset="/assets/logo.webp" type="image/webp" />
+                <img src="/assets/logo.png" alt="RAH Logo" class="h-20 w-auto" width="80" height="80" loading="lazy" />
+              </picture>
             </div>
           </div>
 
