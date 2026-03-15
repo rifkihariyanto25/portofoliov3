@@ -41,7 +41,8 @@
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
 
     <!-- Preload LCP hero image -->
-    <link rel="preload" as="image" href="/assets/foto2.webp" type="image/webp" />
+    <link rel="preload" as="image" href="/assets/foto2-sm.webp" type="image/webp" media="(max-width: 1024px)" />
+    <link rel="preload" as="image" href="/assets/foto2.webp" type="image/webp" media="(min-width: 1025px)" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
@@ -135,11 +136,9 @@
       }
     </script>
 
-    <!-- Google Fonts -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
+    <!-- Google Fonts (deferred) -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" /></noscript>
 
     <!-- Tailwind CSS (built) -->
     <link rel="stylesheet" href="./assets/css/tailwind-output.css" />
@@ -172,16 +171,15 @@
           class="logo-container flex items-center cursor-pointer group"
         >
           <picture>
-              <source srcset="/assets/logo.webp" type="image/webp" />
-              <img
-                src="./assets/logo.png"
-                alt="Rifki Aditya Hariyanto Logo"
-                class="h-16 sm:h-14 w-auto transition-all duration-300 group-hover:scale-110"
-                width="64"
-                height="64"
-              />
-            </picture>
-          />
+            <source srcset="/assets/logo.webp" type="image/webp" />
+            <img
+              src="./assets/logo.png"
+              alt="Rifki Aditya Hariyanto Logo"
+              class="h-16 sm:h-14 w-auto transition-all duration-300 group-hover:scale-110"
+              width="64"
+              height="64"
+            />
+          </picture>
         </a>
 
         <!-- Mobile Menu Button -->
@@ -371,7 +369,11 @@
                 class="relative w-full h-full rounded-full overflow-hidden border-4 border-slate-200 shadow-2xl"
               >
                 <picture>
-                  <source srcset="/assets/foto2.webp" type="image/webp" />
+                  <source
+                    srcset="/assets/foto2-sm.webp 384w, /assets/foto2.webp 768w"
+                    sizes="(max-width: 1024px) 320px, 384px"
+                    type="image/webp"
+                  />
                   <img
                     src="/assets/foto2.png"
                     alt="Rifki Aditya Hariyanto - Backend Developer and UI/UX Designer"
