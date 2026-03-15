@@ -34,6 +34,12 @@
     <!-- Canonical URL -->
     <link rel="canonical" href="https://portofoliorifki.netlify.app/" />
 
+    <!-- Preconnect to external origins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://unpkg.com" />
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://portofoliorifki.netlify.app/" />
@@ -126,24 +132,14 @@
       }
     </script>
 
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              "light-bg": "#f8fafc",
-              "light-card": "#ffffff",
-              "light-hover": "#f1f5f9",
-              "accent-purple": "#a855f7",
-              "accent-blue": "#3b82f6",
-              "accent-cyan": "#06b6d4",
-              "text-dark": "#1e293b",
-            },
-          },
-        },
-      };
-    </script>
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Tailwind CSS (built) -->
+    <link rel="stylesheet" href="./assets/css/tailwind-output.css" />
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
     <link
       rel="stylesheet"

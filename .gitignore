@@ -33,6 +33,9 @@ yarn-error.log*
 dist/
 build/
 
+# Dependencies
+node_modules/
+
 # Backup files
 *.backup
 *.bak
