@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>All Projects | Rifki Aditya Hariyanto</title>
+    <meta
+      name="description"
+      content="Semua project Rifki Aditya Hariyanto - Backend Development, Frontend, Full Stack, UI/UX Design, dan lainnya."
+    />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#a855f7" />
+
+    <!-- Favicon -->
+    <link rel="icon" href="/assets/logo.webp" type="image/webp" />
+
+    <!-- Canonical URL -->
+    <link
+      rel="canonical"
+      href="https://portofoliorifki.netlify.app/projects.html"
+    />
+
+    <!-- Preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://unpkg.com" />
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+
+    <!-- Google Fonts -->
+    <link
+      rel="preload"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      as="style"
+      onload="
+        this.onload = null;
+        this.rel = 'stylesheet';
+      "
+    />
+    <noscript
+      ><link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    /></noscript>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="./assets/css/tailwind-output.css" />
+    <link rel="stylesheet" href="./assets/css/main.css" />
+
+    <!-- AOS & Font Awesome (deferred) -->
+    <link
+      rel="preload"
+      href="https://unpkg.com/aos@2.3.1/dist/aos.css"
+      as="style"
+      onload="
+        this.onload = null;
+        this.rel = 'stylesheet';
+      "
+    />
+    <noscript
+      ><link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"
+    /></noscript>
+    <link
+      rel="preload"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      as="style"
+      onload="
+        this.onload = null;
+        this.rel = 'stylesheet';
+      "
+    />
+    <noscript
+      ><link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    /></noscript>
+  </head>
+  <body class="bg-light-bg text-slate-900 overflow-x-hidden">
+    <!-- Animated Background Blobs -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none">
+      <div class="blob blob-purple"></div>
+      <div class="blob blob-blue"></div>
+      <div class="blob blob-cyan"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav
+      id="navbar"
+      class="fixed top-0 left-0 w-full glass z-50 transition-all duration-300 px-6 sm:px-8 lg:px-24"
+    >
+      <div class="flex justify-between items-center h-20">
+        <!-- Logo -->
+        <a
+          href="./index.html"
+          class="logo-container flex items-center cursor-pointer group"
+        >
+          <picture>
+            <source srcset="/assets/logo.webp" type="image/webp" />
+            <img
+              src="./assets/logo.png"
+              alt="Rifki Aditya Hariyanto Logo"
+              class="h-16 sm:h-14 w-auto transition-all duration-300 group-hover:scale-110"
+              width="64"
+              height="64"
+            />
+          </picture>
+        </a>
+
+        <!-- Mobile Menu Button -->
+        <button
+          id="mobile-menu-btn"
+          class="mobile-menu-btn text-slate-900 text-xl md:hidden focus:outline-none"
+        >
+          <i class="fas fa-bars"></i>
+        </button>
+
+        <!-- Desktop Navigation Links -->
+        <div id="nav-links" class="hidden md:flex items-center space-x-10">
+          <a
+            href="./index.html#home"
+            class="nav-link text-slate-900 hover:text-accent-purple transition duration-300 py-2 font-medium"
+            >Home</a
+          >
+          <a
+            href="./projects.html"
+            class="nav-link text-accent-purple transition duration-300 py-2 font-medium"
+            >Projects</a
+          >
+          <a
+            href="./index.html#experience"
+            class="nav-link text-slate-900 hover:text-accent-purple transition duration-300 py-2 font-medium"
+            >Experience</a
+          >
+          <a
+            href="./index.html#skill"
+            class="nav-link text-slate-900 hover:text-accent-purple transition duration-300 py-2 font-medium"
+            >Skills</a
+          >
+          <a
+            href="./index.html#kontak"
+            class="cta-btn px-7 py-3 rounded-full bg-gradient-to-r from-accent-purple to-accent-blue text-white font-semibold hover:shadow-xl hover:shadow-accent-purple/50 transition-all duration-300"
+          >
+            Contact Me
+          </a>
+        </div>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div
+        id="mobile-menu"
+        class="mobile-menu md:hidden hidden flex-col space-y-3 pb-6 px-4"
+      >
+        <a
+          href="./index.html#home"
+          class="text-slate-900 hover:text-accent-purple transition duration-300 block py-2"
+          >Home</a
+        >
+        <a
+          href="./projects.html"
+          class="text-accent-purple transition duration-300 block py-2 font-medium"
+          >Projects</a
+        >
+        <a
+          href="./index.html#experience"
+          class="text-slate-900 hover:text-accent-purple transition duration-300 block py-2"
+          >Experience</a
+        >
+        <a
+          href="./index.html#skill"
+          class="text-slate-900 hover:text-accent-purple transition duration-300 block py-2"
+          >Skills</a
+        >
+        <a
+          href="./index.html#kontak"
+          class="cta-btn px-7 py-3 rounded-full bg-gradient-to-r from-accent-purple to-accent-blue text-white font-semibold inline-block mt-2"
+        >
+          Contact Me
+        </a>
+      </div>
+    </nav>
+
+    <!-- Projects Section -->
+    <section class="pt-32 pb-24 px-4 sm:px-8 lg:px-20 relative">
+      <div class="container mx-auto">
+        <div class="text-center mb-16">
+          <p
+            class="text-accent-purple font-medium mb-2 text-sm tracking-wider uppercase"
+            data-aos="fade-up"
+          >
+            Portfolio
+          </p>
+          <h1
+            class="text-4xl lg:text-5xl font-bold mb-4"
+            data-aos="fade-up"
+            data-aos-delay="100"
+          >
+            <span class="gradient-text">All Projects</span>
+          </h1>
+          <p
+            class="text-slate-600 max-w-2xl mx-auto text-lg"
+            data-aos="fade-up"
+            data-aos-delay="200"
+          >
+            Koleksi lengkap karya saya yang mencakup pengembangan backend,
+            desain UI/UX, implementasi IoT, dan dokumentasi teknis.
+          </p>
+        </div>
+
+        <!-- Filter Buttons (di-generate otomatis dari database) -->
+        <div
+          id="filter-container"
+          class="flex flex-wrap justify-center gap-3 mb-16"
+          data-aos="fade-up"
+          data-aos-delay="300"
+        ></div>
+
+        <!-- Project Grid -->
+        <div
+          id="project-grid"
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+        >
+          <div class="col-span-full text-center text-slate-600 py-12">
+            <i class="fas fa-spinner fa-spin text-4xl mb-4"></i>
+            <p>Memuat portfolio...</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer
+      class="py-10 px-4 sm:px-8 lg:px-20 border-t border-slate-200 bg-white"
+    >
+      <div class="container mx-auto">
+        <div
+          class="flex flex-col md:flex-row justify-between items-center gap-6"
+        >
+          <div class="text-center md:text-left">
+            <div class="mb-2 flex justify-center md:justify-start">
+              <picture>
+                <source srcset="/assets/logo.webp" type="image/webp" />
+                <img
+                  src="/assets/logo.png"
+                  alt="RAH Logo"
+                  class="h-20 w-auto"
+                  width="80"
+                  height="80"
+                  loading="lazy"
+                />
+              </picture>
+            </div>
+          </div>
+
+          <div class="flex gap-5">
+            <a
+              href="https://github.com/rifkihariyanto25"
+              target="_blank"
+              class="social-icon w-10 h-10 flex items-center justify-center border-2 border-accent-purple/30 text-accent-purple rounded-full hover:border-accent-purple hover:bg-accent-purple/10 transition duration-300"
+              aria-label="GitHub"
+            >
+              <i class="fab fa-github"></i>
+            </a>
+            <a
+              href="https://www.linkedin.com/in/rifki-aditya-hariyanto-2662821a7/"
+              target="_blank"
+              class="social-icon w-10 h-10 flex items-center justify-center border-2 border-accent-blue/30 text-accent-blue rounded-full hover:border-accent-blue hover:bg-accent-blue/10 transition duration-300"
+              aria-label="LinkedIn"
+            >
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a
+              href="https://www.youtube.com/@rifkiadityahariyanto6958"
+              target="_blank"
+              class="social-icon w-10 h-10 flex items-center justify-center border-2 border-red-500/30 text-red-500 rounded-full hover:border-red-500 hover:bg-red-500/10 transition duration-300"
+              aria-label="YouTube"
+            >
+              <i class="fab fa-youtube"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="mt-8 pt-8 border-t border-slate-200 text-center">
+          <p class="text-sm text-slate-600">
+            &copy; 2024 Rfki. Seluruh hak cipta dilindungi.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <!-- Supabase JS Library -->
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+
+    <!-- Supabase Configuration -->
+    <script src="./assets/js/supabase-config.js?v=4"></script>
+
+    <!-- Portfolio Dynamic Handler -->
+    <script src="./assets/js/portfolio-dynamic.js?v=6"></script>
+
+    <!-- AOS Init + Navbar -->
+    <script>
+      AOS.init({
+        duration: 800,
+        easing: "ease-out-cubic",
+        once: true,
+      });
+
+      // Navbar scroll effect
+      window.addEventListener("scroll", () => {
+        const nav = document.getElementById("navbar");
+        if (window.scrollY > 50) {
+          nav.classList.add("shadow-2xl");
+        } else {
+          nav.classList.remove("shadow-2xl");
+        }
+      });
+
+      // Mobile menu toggle
+      const mobileMenuBtn = document.getElementById("mobile-menu-btn");
+      const mobileMenu = document.getElementById("mobile-menu");
+      mobileMenuBtn.addEventListener("click", () => {
+        mobileMenu.classList.toggle("hidden");
+      });
+
+      // Close mobile menu when clicking on a link
+      document
+        .querySelectorAll("#mobile-menu a, #nav-links a")
+        .forEach((link) => {
+          link.addEventListener("click", () => {
+            mobileMenu.classList.add("hidden");
+          });
+        });
+    </script>
+  </body>
+</html>

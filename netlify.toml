@@ -46,6 +46,11 @@
   to = "/admin.html"
   status = 200
 
+[[redirects]]
+  from = "/projects"
+  to = "/projects.html"
+  status = 200
+
 # 404 page (opsional)
 [[redirects]]
   from = "/*"
