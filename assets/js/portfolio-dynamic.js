@@ -25,8 +25,8 @@ class PortfolioManager {
                 return [];
             }
 
-            // Sort by date (oldest first) - dari yang terlama ke terbaru
-            data.sort((a, b) => new Date(a.date) - new Date(b.date));
+            // Sort by date (newest first) - dari yang terbaru ke terlama
+            data.sort((a, b) => new Date(b.date) - new Date(a.date));
 
             return data;
         } catch (error) {

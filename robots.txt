@@ -6,8 +6,5 @@ Allow: /
 Disallow: /admin.html
 Disallow: /admin
 
-# Sitemap location (ganti dengan domain kamu setelah deploy)
-Sitemap: https://GANTI-DOMAIN-KAMU.netlify.app/sitemap.xml
-
-# Crawl-delay (opsional)
-Crawl-delay: 1
+# Sitemap location
+Sitemap: https://portofoliorifki.netlify.app/sitemap.xml
